@@ -27,11 +27,12 @@ public class InvoiceItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "item_id")
 	private Item item;
 	
 	
 	private int quantity;
+	private double price;
 	
 }

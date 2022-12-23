@@ -36,7 +36,7 @@ import lt.codeacademy.invoice.services.UserService;
 @ApiOperation(value ="Invoice API", notes = "")
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*") //, maxAge = 10000
 public class ApiController {
 
 	@Autowired
@@ -115,7 +115,7 @@ public class ApiController {
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT );
 	}
 	
-	//users endpoints
+	//users 
 	
 	@GetMapping("/users")
 	@PreAuthorize("hasRole('ADMIN')")
@@ -218,7 +218,7 @@ public class ApiController {
 		cust2.setVardas( "Linas" );
 
 		ArrayList<InvoiceItem> items = new ArrayList<InvoiceItem>();
-		items.add( new InvoiceItem( null, itemas1, 10 ) );
+		items.add( new InvoiceItem( null, itemas1, 10,0 ) );
 
 		inv2.setCustomerId( cust2 );
 		inv2.setInvoiceItems( items );

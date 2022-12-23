@@ -81,16 +81,20 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
-        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeRequests().antMatchers("/api/auth/**", "/swagger-ui/**", "/api-docs/**",  "/v1/api-docs/**", "/api/v1/**", "/v2/**", "/v3/**", "/register/**", "/api/authsignin", "/api/v1/items").permitAll()
-        .antMatchers("/api/test/**", "/swagger-ui/**", "/api-docs/**", "/v1/api-docs/**", "/api/v1/**", "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/api/authsignin").permitAll()
+          .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+          .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//        .authorizeRequests().antMatchers("/api/auth/**", "/swagger-ui/**", "/api-docs/**",  "/v1/api-docs/**", "/api/v1/**", "/v2/**", "/v3/**", "/register/**", "/api/authsignin").permitAll()
+//        .antMatchers("/api/test/**", "/swagger-ui/**", "/api-docs/**", "/v1/api-docs/**", "/api/v1/**", "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/api/authsignin", "/api/v1/items").permitAll()
+          .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+          .antMatchers("/api/test/**", "/api/**").permitAll()
+         
+        
         .anyRequest().authenticated();
     
     http.authenticationProvider(authenticationProvider());
-
-    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     
+    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+  //  http.headers().httpStrictTransportSecurity().disable();
     return http.build();
   }
 }
