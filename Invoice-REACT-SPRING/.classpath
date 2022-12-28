@@ -46,5 +46,15 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Laurynas/.m2/repository/org/springframework/security/spring-security-test/5.7.3/spring-security-test-5.7.3.jar" sourcepath="C:/Users/Laurynas/.m2/repository/org/springframework/security/spring-security-test/5.7.3/spring-security-test-5.7.3-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework.security"/>
+			<attribute name="maven.artifactId" value="spring-security-test"/>
+			<attribute name="maven.version" value="5.7.3"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
