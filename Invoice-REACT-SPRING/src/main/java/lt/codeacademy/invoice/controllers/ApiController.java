@@ -23,10 +23,12 @@ import lt.codeacademy.invoice.entities.Customer;
 import lt.codeacademy.invoice.entities.Invoice;
 import lt.codeacademy.invoice.entities.InvoiceItem;
 import lt.codeacademy.invoice.entities.Item;
+import lt.codeacademy.invoice.entities.ItemGroup;
 import lt.codeacademy.invoice.entities.Role;
 import lt.codeacademy.invoice.entities.User;
 import lt.codeacademy.invoice.services.CustomerService;
 import lt.codeacademy.invoice.services.InvoiceService;
+import lt.codeacademy.invoice.services.ItemGroupService;
 import lt.codeacademy.invoice.services.ItemService;
 import lt.codeacademy.invoice.services.RoleService;
 import lt.codeacademy.invoice.services.UserService;
@@ -47,6 +49,9 @@ public class ApiController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private ItemGroupService itemGroupService;
 
 	@Autowired
 	private InvoiceService invoiceService;
@@ -93,6 +98,8 @@ public class ApiController {
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT );
 	}
 
+	//Items
+	
 	@GetMapping("/items")
 	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
 	public List<Item> getAllItems() {
@@ -111,16 +118,63 @@ public class ApiController {
 		return itemService.updateItemById( id, item );
 	}
 
+//	@PostMapping("/invoices")
+//	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
+//	public Invoice saveInvoiceDetails(@RequestBody Invoice invoice) {
+//		return invoiceService.addInvoice( invoice );
+//		
+//	}
+//
+//	@PostMapping("/invoices/{id}")
+//	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
+//	public Invoice updateInvoice(@RequestBody Invoice invoice, @PathVariable Long id) {
+//		return invoiceService.updateInvoiceById( id, invoice );
+//	}
+	
 	@GetMapping("/items/{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
 	public Item getItemById(@PathVariable Long id) {
 		return itemService.getItemById( id );
 	}
+	
 
 	@DeleteMapping("/items/{id}")
 	@PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> deleteItemById(@PathVariable Long id) {
 		itemService.deleteItemById( id );
+		return new ResponseEntity<>( HttpStatus.NO_CONTENT );
+	}
+	
+	//ItemGroup
+	
+	@GetMapping("/itemGroups")
+	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
+	public List<ItemGroup> getAllItemGroup() {
+		return itemGroupService.getItemGroupList();
+	}
+
+	@PostMapping("/itemGroup")
+	@PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
+	public ItemGroup saveItemGroupDetails(@RequestBody ItemGroup itemGroup) {
+		return itemGroupService.addItemGroup( itemGroup );
+	}
+
+	@PostMapping("/itemGroup/{id}")
+	@PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
+	public ItemGroup updateItemGroup(@RequestBody ItemGroup itemGroup, @PathVariable Long id) {
+		return itemGroupService.updateItemGroupById( id, itemGroup );
+	}
+
+	@GetMapping("/itemGroup/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('MANAGER') or hasRole('ADMIN')")
+	public ItemGroup getItemGroupById(@PathVariable Long id) {
+		return itemGroupService.getItemGroupById( id );
+	}
+
+	@DeleteMapping("/itemGroup/{id}")
+	@PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
+	public ResponseEntity<HttpStatus> deleteItemGroupById(@PathVariable Long id) {
+		itemGroupService.deleteItemGroupById( id );
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT );
 	}
 	

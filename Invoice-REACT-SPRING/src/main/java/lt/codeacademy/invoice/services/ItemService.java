@@ -6,20 +6,38 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lt.codeacademy.invoice.entities.Invoice;
 import lt.codeacademy.invoice.entities.Item;
+import lt.codeacademy.invoice.repositories.ItemGroupRepository;
 import lt.codeacademy.invoice.repositories.ItemRepository;
 
 @Service
 public class ItemService {
 	@Autowired
 	ItemRepository itemRepository;
+	
+	@Autowired
+	ItemGroupRepository itemGroupRepository;
 
 	public List<Item> getItemList() {
-		return itemRepository.findAll();
+		var list = itemRepository.findAll();
+		return list;
 	}
 
 	public Item addItem(Item item) {
-		return itemRepository.save( item );
+		
+		System.out.println(item + " servisas");
+		
+		try{
+			
+			Item itm = itemRepository.save(item );
+			System.out.println(itm);
+			return itm;
+		}	catch(Exception e) {
+			System.out.println(e.getMessage() + "Suluzo cia");
+		}
+		
+		return null;
 	}
 
 	public Item getItemById(Long id) {

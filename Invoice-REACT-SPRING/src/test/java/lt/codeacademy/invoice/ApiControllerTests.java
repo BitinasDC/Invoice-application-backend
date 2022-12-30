@@ -127,7 +127,7 @@ public class ApiControllerTests {
 		item.setId( 50L );
 		item.setPavadinimas( "kastuvas" );
 		item.setAprasymas( "test" );
-		item.setGrupe( "Kastuvai" );
+		//item.setGrupe( "Kastuvai" );
 		item.setStatusas( "aktyvus" );
 		item.setKodas( "21454545" );
 		item.setBazineKaina( 10D );
@@ -147,7 +147,7 @@ public class ApiControllerTests {
 		item.setId( 50L );
 		item.setPavadinimas( "kastuvas" );
 		item.setAprasymas( "test" );
-		item.setGrupe( "Kastuvai" );
+		//item.setGrupe( "Kastuvai" );
 		item.setStatusas( "aktyvus" );
 		item.setKodas( "21454545" );
 		item.setBazineKaina( 10D );

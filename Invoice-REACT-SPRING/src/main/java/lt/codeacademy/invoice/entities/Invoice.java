@@ -29,7 +29,9 @@ public class Invoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String invoiceNumber;
+	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date")
 	private LocalDate myDate;
